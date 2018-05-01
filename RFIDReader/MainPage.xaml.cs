@@ -133,7 +133,10 @@ namespace RFIDReader
                         _pinGreenLed.Write(GpioPinValue.High);
                         
                         Person personaPresente = JsonConvert.DeserializeObject<Person>(messaggio);
-                        await SuccesReadAsync(personaPresente);
+                        if (personaPresente != null)
+                            await SuccesReadAsync(personaPresente);
+                        else
+                            await ErrorReadAsync();
                         if (!string.IsNullOrEmpty(personaPresente.Uri))
                         {
                             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>

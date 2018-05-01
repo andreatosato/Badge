@@ -21,11 +21,11 @@ namespace Badge.EF.Entity
         public int IdPerson;
 
         public string MachineName { get; set; }
-        [ForeignKey("MachineName")]
+        //[ForeignKey("MachineName")]
         public Machine Machine { get; set; }
 
         public string NomeBadge { get; set; }
-        [ForeignKey("NomeBadge")]
+        //[ForeignKey("NomeBadge")]
         public PopulateBadge Badge { get; set; }
     }
 }

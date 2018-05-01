@@ -148,9 +148,9 @@ namespace Badge.Web.Controllers
                 return NotFound();
             }
 
-            bool haveswipes = _context.Badges
-                .Where(m => m.NomeBadge == Id)
-                .Any(x => x.Swipes.Any());
+            //bool haveswipes = _context.Badges
+            //    .Where(m => m.NomeBadge == Id)
+            //    .Any(x => x.Swipes.Any());
 
             var populateBadge = await _context.Badges
                 .Include(p => p.Person)
@@ -160,7 +160,7 @@ namespace Badge.Web.Controllers
                 return NotFound();
             }
 
-            populateBadge.CanDelete = !haveswipes;
+            //populateBadge.CanDelete = !haveswipes;
             return View(populateBadge);
         }
 

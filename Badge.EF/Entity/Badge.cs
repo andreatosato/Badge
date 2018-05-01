@@ -18,7 +18,7 @@ namespace Badge.EF.Entity
 
         public byte[] Array { get; set; }
 
-        public List<Swipe> Swipes { get; set; } = new List<Swipe>();
+        //public List<Swipe> Swipes { get; set; } = new List<Swipe>();
 
         [Display(Name = "Id Persona")]
         public int IdPerson { get; set; }

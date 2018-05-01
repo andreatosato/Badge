@@ -21,6 +21,7 @@ namespace Badge.Practise.Initialize
             byte[] BadgeValueOne = { 144, 86, 10, 133, 73 };
             byte[] BadgeValueTwo = { 106, 60, 175, 41, 208 };
             Person persona1 = p.Populate("Andrea","Tosato","Sviluppatore");
+            persona1.Uri = "https://roboval2018.blob.core.windows.net/images/1/profilo.JPG";
             Person persona2 = p.Populate("Mario", "Rossi", "Sistemista");
             db.People.Add(persona1);
             db.People.Add(persona2);
@@ -50,22 +51,22 @@ namespace Badge.Practise.Initialize
             db.Badges.Add(badge2);
             db.SaveChanges();
 
-            PopulateSwipe s = new PopulateSwipe();
-            DateTime orario = DateTime.Now;
-            string pospersona = "Villafranca";
-            Swipe swipe1 = s.Populate(orario,badge1,pospersona,machine1);
-            Swipe swipe2 = s.Populate(orario, badge1, pospersona, machine1);
-            Swipe swipe3 = s.Populate(orario, badge1, pospersona, machine2);
-            Swipe swipe4 = s.Populate(orario, badge2, pospersona, machine2);
-            Swipe swipe5 = s.Populate(orario, badge2, pospersona, machine2);
-            Swipe swipe9 = s.Populate(orario, badge1, pospersona, machine1);
-            db.Swipe.Add(swipe1);
-            db.Swipe.Add(swipe2);
-            db.Swipe.Add(swipe3);
-            db.Swipe.Add(swipe4);
-            db.Swipe.Add(swipe5);
-            db.Swipe.Add(swipe9);
-            db.SaveChanges();
+            //PopulateSwipe s = new PopulateSwipe();
+            //DateTime orario = DateTime.Now;
+            //string pospersona = "Villafranca";
+            //Swipe swipe1 = s.Populate(orario,badge1,pospersona,machine1);
+            //Swipe swipe2 = s.Populate(orario, badge1, pospersona, machine1);
+            //Swipe swipe3 = s.Populate(orario, badge1, pospersona, machine2);
+            //Swipe swipe4 = s.Populate(orario, badge2, pospersona, machine2);
+            //Swipe swipe5 = s.Populate(orario, badge2, pospersona, machine2);
+            //Swipe swipe9 = s.Populate(orario, badge1, pospersona, machine1);
+            //db.Swipe.Add(swipe1);
+            //db.Swipe.Add(swipe2);
+            //db.Swipe.Add(swipe3);
+            //db.Swipe.Add(swipe4);
+            //db.Swipe.Add(swipe5);
+            //db.Swipe.Add(swipe9);
+            //db.SaveChanges();
 
             Console.ReadKey();
         }
