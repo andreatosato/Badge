@@ -1,0 +1,61 @@
+@using Badge.Web.Models.Shared
+@using Badge.Web.Models.People
+
+@model Badge.EF.Entity.Person
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="IdPerson" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cognome)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        @if (Model.CanDelete == true)
+        {
+            <button type="submit" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete">
+                <i class="large material-icons">delete</i>
+            </button>
+        }
+        else
+        {
+            <button type="button" class="btn tooltipped disabled" data-position="bottom" data-delay="50" data-tooltip="It's impossible to delete because there are references in database'">
+                <i class="large material-icons">delete</i>
+            </button>
+        }
+
+        <a asp-action="Index">
+            <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+                <i class="material-icons">arrow_back</i>
+            </button>
+        </a>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+}
+
+

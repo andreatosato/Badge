@@ -1,0 +1,89 @@
+﻿@using Badge.Web.Models.Shared
+@using Badge.Web.Models.Badges
+
+@model PaginationViewModel<BadgesViewModel>
+
+@{
+    ViewData["Title"] = "Badge";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a  asp-area="" asp-controller="PopulateBadges"asp-action="Create" class="btn-floating btn-large waves-effect waves-light #26a69" data-position="bottom" data-delay="50" data-tooltip="Create New"><i class="material-icons">add</i></a>
+</p>
+
+<table class="table table-hover ">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data.First().NomeBadge)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data.First().IdPerson)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Data)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeBadge)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPerson)
+                    </td>
+
+                    <td>
+
+                        
+                    </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+<div>
+    <br />
+</div>
+
+
+<ul class="pagination">
+
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+
+
+    @for (int i = 0; i < (Model.Count) + 1; i++)
+    {
+            @if (Model.Skip / 6 == i)
+            {
+                <li class="active"><a asp-controller="People" asp-action="Badge_people" asp-route-peopleid="@(Model.Data.FirstOrDefault().IdPerson)" asp-route-skip="@(i * 6)" asp-route-take="6">@(i + 1)</a></li>
+            }
+            else
+            {
+                <li><a asp-controller="People" asp-action="Badge_people" asp-route-peopleid="@(Model.Data.FirstOrDefault().IdPerson)" asp-route-skip="@(i * 6)" asp-route-take="6">@(i + 1)</a></li>
+
+            }
+    }
+    <li>
+
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+
+</ul>
+
+
+
+
+
+
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
+}

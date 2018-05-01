@@ -1,0 +1,50 @@
+﻿@model Badge.EF.Entity.Person
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cognome)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <a asp-action="Edit" asp-route-id="@Model.IdPerson">
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit">
+            <i class="material-icons">border_color</i>
+        </button>
+    </a>
+    <a asp-action="Index">
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </a>
+
+</div>
+
+@section Scripts{
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+}
+
+

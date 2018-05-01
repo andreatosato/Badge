@@ -1,0 +1,45 @@
+@model Badge.EF.Entity.PopulateBadge
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PopulateBadge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="NomeBadge" />
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeBadge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPerson)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete" >
+
+        @if (Model.CanDelete == false)
+        {
+            <button type="submit" class="btn tooltipped disabled" data-position="bottom" data-delay="50" data-tooltip="Delete">
+                <i class="large material-icons">delete</i>
+            </button>
+        }
+        else
+        {
+            <button type="submit" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete">
+                <i class="large material-icons">delete</i>
+            </button>
+        }
+        
+        <input type="hidden" asp-for="IdPerson" value="@Model.IdPerson" />
+        
+        <a asp-action="Index" asp-route-peopleid="@Model.IdPerson">
+            <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+                <i class="material-icons">arrow_back</i>
+            </button>
+        </a>
+    </form>
+</div>

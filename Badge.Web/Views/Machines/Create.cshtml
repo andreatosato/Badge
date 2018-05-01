@@ -1,0 +1,69 @@
+@using Badge.Web.Models.Shared
+@using Badge.Web.Models.Machines
+
+
+@model MachinesViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Machine</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="IpMachine" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="IpMachine" class="form-control" />
+                <span asp-validation-for="IpMachine" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MacAddress" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+            
+                <input asp-for="MacAddress" class="form-control" />
+                <span asp-validation-for="MacAddress" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="center-align">
+                <div class="col-md-offset-2 col-md-10">
+
+                    <div class="center-align">
+                        <div class="col-md-offset-2 col-md-10">
+
+                            <button type="submit" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Create">
+                                <i class="material-icons">add_circle_outline</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+</script>
+}
+
+

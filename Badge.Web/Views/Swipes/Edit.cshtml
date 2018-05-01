@@ -1,0 +1,68 @@
+@using Badge.Web.Models.Shared
+@using Badge.Web.Models.Swipes
+
+@model SwipesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Swipe</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="IdSwipe" />
+        <div class="form-group">
+            <label asp-for="PosPersona" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PosPersona" class="form-control" />
+                <span asp-validation-for="PosPersona" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Orario" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Orario" class="form-control" />
+                <span asp-validation-for="Orario" class="text-danger"></span>
+            </div>
+        </div>
+
+        <input type="hidden" asp-for="IdPerson" value="@Model.IdPerson" />
+
+        <input type="hidden" asp-for="NomeBadge" value="@Model.NomeBadge" />
+
+        <input type="hidden" asp-for="MachineName" value="@Model.MachineName" />
+
+        </div>
+        <div class="form-group">
+            <a asp-action="Edit" asp-route-id="@Model.IdSwipe">
+                <div class="center-align">
+                    <button type="submit" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Save">
+                        <i class="large material-icons">save</i>
+                </div>
+                    </button>
+            </a>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-area="" asp-controller="Swipes" asp-action="Index" asp-route-peopleid=@Model.IdPerson>
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+</script>
+}

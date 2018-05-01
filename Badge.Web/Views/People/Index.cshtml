@@ -1,0 +1,154 @@
+﻿@using Badge.Web.Models.Shared
+@using Badge.Web.Models.People
+
+@model PaginationViewModel<PeopleViewModel>
+
+@{
+    ViewData["Title"] = "Persone";
+}
+
+<h2>@ViewData["Title"]</h2>
+<a asp-action="Create">
+
+    <a asp-action="Create" class="btn-floating btn-large waves-effect waves-light #F0180A" data-position="bottom" data-delay="50" data-tooltip="Create New"><i class="material-icons">add</i></a>
+
+</a>
+
+<br />
+
+@for (int i = 0; i < Model.Data.Count; i++)
+{
+    PeopleViewModel item = Model.Data.ElementAt(i);
+    @if (i % 3 == 0 || i == 0) {
+        <text><div class="row"></text>
+    }
+    <div class="col s4">
+        <div class="card sticky-action">
+            <div class="card-image waves-effect waves-block waves-light">
+                @if (item.Uri == null)
+                {
+                    <img class="responsive-img active-img" src="@Constraints.DefaultPhoto">
+                }
+                else
+                {
+                    <img class="responsive-img active-img" src="@item.Uri">
+                }
+
+            </div>
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s10">
+                        <span class="card-title activator grey-text text-darken-4">
+                            @if (item.Nome.Length + item.Cognome.Length > 23)
+                            {
+                                string tot = item.Nome + " " + item.Cognome;
+                                @(tot.Substring(0, 21) + "\n" + (tot.Substring(22, (tot.Length) - 22)))
+
+                            }
+                            else
+                            {
+                                @(item.Nome + " " + item.Cognome)<i class="material-icons right"></i>
+                            }
+                            
+                        </span>
+                    </div>
+                    <div class="col s2">
+                        <div style="position: relative; height: 70px;">
+                            <div class="fixed-action-btn" style="position: absolute; right: 24px;">
+                                <a class="btn-floating btn-large #186BEA">
+                                    <i class="large material-icons">mode_edit</i>
+                                </a>
+                                <ul>
+                                    <li>  <a asp-action="Delete" asp-route-id="@item.IdPerson">
+                                        <botton class="btn-floating F0180A" data-position="bottom" data-delay="50" data-tooltip="Delete">
+                                        <i class="material-icons">
+                                            delete
+                                            </i>
+                                            </botton>
+                                          </a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Details" asp-route-id="@item.IdPerson">
+                                            <botton class="btn-floating #F0180A" data-position="bottom" data-delay="50" data-tooltip="Details">
+                                                <i class="material-icons">
+                                                    pageview
+                                                </i>
+                                            </botton>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-action="Edit" asp-route-id="@item.IdPerson">
+                                            <botton class="btn-floating #F0180A" data-position="bottom" data-delay="50" data-tooltip="Details">
+                                                <i class="material-icons">
+                                                    border_color
+                                                </i>
+                                            </botton>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p> @("  "+item.Professione)</p>
+                </div>
+                
+            </div>
+            <div class="card-action">
+                @if (item.CountBadge == 0)
+                {
+                    <h3></h3>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="PopulateBadges" asp-action="Index" asp-route-peopleid="@(item.IdPerson)">Badge</a>
+                    <a asp-area="" asp-controller="Swipes" asp-action="Index" asp-route-peopleid="@(item.IdPerson)">Swipes </a>
+                }
+                
+            </div>
+        </div>
+    </div>
+
+    @if ((i+1) % 3 == 0 || i == Model.Data.Count - 1)
+    {
+        @: </div>
+    }
+}
+
+<ul class="pagination">
+
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+
+
+
+    @for (int i = 0; i < (Model.Count) + 1; i++)
+    {
+
+
+        @if (Model.Skip / 6 == i)
+                {
+            <li class="active"><a asp-controller="People" asp-action="Index" asp-route-skip="@(i * 6)" asp-route-take="6">@(i + 1)</a></li>
+        }
+        else
+        {
+            <li><a asp-controller="People" asp-action="Index" asp-route-skip="@(i * 6)" asp-route-take="6">@(i + 1)</a></li>
+        }
+    }
+    <li>
+
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+
+</ul>
+
+
+
+
+
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
+}

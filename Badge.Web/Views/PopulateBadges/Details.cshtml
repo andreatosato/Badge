@@ -1,0 +1,46 @@
+@model Badge.EF.Entity.PopulateBadge
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PopulateBadge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeBadge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NomeBadge)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPerson)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPerson)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.NomeBadge">
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit">
+            <i class="material-icons">border_color</i>
+        </button>
+    </a>
+    <a asp-action="Index" asp-route-peopleid=@Model.IdPerson>
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </a>
+</div>
+
+@section Scripts{
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+}

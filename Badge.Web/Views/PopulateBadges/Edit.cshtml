@@ -1,0 +1,49 @@
+@using Badge.Web.Models.Shared
+@using Badge.Web.Models.Badges
+
+@model BadgesViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit </h2>
+
+<form asp-action="Edit">
+    <h4>Badge</h4>
+    <div class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-10">
+            <input asp-for="NomeBadge" class="form-control" />
+            <span asp-validation-for="NomeBadge" class="text-danger"></span>
+        </div>
+        
+        <input type="hidden" asp-for="IdPerson" value="@Model.IdPerson" />
+        <div class="form-group">
+                <div class="center-align">
+                    <button type="submit" class="btn tooltipped disabled" data-position="bottom" data-delay="50" data-tooltip="Save">
+                        <i class="large material-icons">save</i>
+                </div>
+                </button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" asp-route-peopleid="@Model.IdPerson" >
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+</script>
+}

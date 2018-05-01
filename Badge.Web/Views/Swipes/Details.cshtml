@@ -1,0 +1,59 @@
+@model Badge.EF.Entity.Swipe
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Swipe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PosPersona)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PosPersona)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Orario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Orario)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Badge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Badge.NomeBadge)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Machine)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Machine.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdSwipe">
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit">
+            <i class="material-icons">border_color</i>
+        </button>
+    </a>
+
+    <a asp-action="Index" asp-route-peopleid="@Model.IdPerson">
+        <button type="button" class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to List">
+            <i class="material-icons">arrow_back</i>
+        </button>
+    </a>
+</div>
+@section Scripts{
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+}
+
